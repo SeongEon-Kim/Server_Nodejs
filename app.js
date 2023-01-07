@@ -25,5 +25,6 @@ app.use('/shelf', shelfRouter);
 app.use('/search', searchBookRouter);
 app.use("/timer", timerRouter);
 
+app.use("/register", bookRouter);
 
 module.exports = app;

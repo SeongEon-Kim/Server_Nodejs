@@ -10,6 +10,11 @@ const config =
     port: `3306`,
     password: `${process.env.DB_PASS}`,
     database: `${process.env.DB_NAME}`
+    // host: `bookmark.ceouogj5ugiy.ap-northeast-2.rds.amazonaws.com`,
+    // user: `admin`,
+    // port: `3306`,
+    // password: `bookmark123`,
+    // database: `bookMark_DB`,
 }
 
 const pool = mysql.createPool(config);

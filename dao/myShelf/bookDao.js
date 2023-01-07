@@ -1,33 +1,25 @@
-module.exports.registerBookInfo = async (connection, user_id, title) => {    //, register, status 없이,,?
-    const registerBookInfoQuery = `
-            INSERT INTO BookInfo(user_id, title, register, status) 
-            VALUES(?, ?, 1, 1);
-        `;
-    const registerBookInfoRow = await connection.query(
-      registerBookInfoQuery, [
-      user_id,
-      title,
-      1,          // register, 대신에 1로?
-      1
-      ]);
+module.exports.registerBookInfo = async (connection, registerBookInfoParams) => {    
+    const registerBookInfoQuery = `INSERT INTO BookInfo(user_id, title, author, publisher, img_url) VALUES (?, ?, ?, ?, ?);`;
+    const [registerBookInfoRow] = await connection.query(
+      registerBookInfoQuery, 
+      registerBookInfoParams
+      );
     
-    return registerBookInfoRow[0];
+    return registerBookInfoRow;
   };
   
-  module.exports.deleteBookInfo = async (connection, user_id, book_id) => {    // register, status 없이?
-          const deleteBookInfoQuery = `
-                UPDATE BookInfo 
-                SET status = 0 
-                HERE user_id = ? AND book_id = ?;   
-            `;
-    const deleteBookInfoRow  = await connection.query(
-      deleteBookInfoQuery, [
-      user_id,
-      book_id
-      ]);
-    
-    return deleteBookInfoRow[0];
-  };
+module.exports.deleteBookInfo = async (connection, deleteBookInfoParams) => {    
+        const deleteBookInfoQuery = `
+            UPDATE BookInfo 
+            SET status = 0 
+            HERE user_id = ? AND book_id = ?;   
+        `;
+const deleteBookInfoRow  = await connection.query(
+    deleteBookInfoQuery, 
+    deleteBookInfoParams);
+
+return deleteBookInfoRow[0];
+};
   
   
   // 책 등록

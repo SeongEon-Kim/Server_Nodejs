@@ -8,15 +8,19 @@ const bookService = require("../../service/myShelf/bookService");
  module.exports.registerBooks = async (req, res) => {
     try {
         const user_id = parseInt(req.params.user_id);
-        const title = parseInt(req.params.title);
-        //const register = parseInt(req.params.register);
-        //const status = parseInt(req.params.status);
+
+        var title = req.body.title;
+        var author = req.body.author;
+        var publisher = req.body.publisher;
+        var img_url = req.body.img_url;
+        
         
         const registerResponse = await bookService.registerBook(
             user_id, 
             title, 
-            //register, 
-            //status
+            author,
+            publisher,
+            img_url,
         );
         console.log(registerResponse);
         res.send(registerResponse);

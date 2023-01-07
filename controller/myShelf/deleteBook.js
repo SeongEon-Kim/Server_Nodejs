@@ -1,4 +1,3 @@
-
 const bookService = require("../../service/myShelf/bookService");
 
 /**
@@ -10,16 +9,15 @@ const bookService = require("../../service/myShelf/bookService");
     try {
         const user_id = parseInt(req.params.user_id);
         const book_id = parseInt(req.params.book_id);
-        //const register = parseInt(req.params.register);
-        //const status = parseInt(req.params.status);
+
+        // Q book_id도 숫자로 params로 받나요?
         
         const deleteResponse = await bookService.deleteBook(
             user_id, 
             book_id, 
-            //status
         );
         console.log(deleteResponse);
-        res.send(deleterResponse);
+        res.send(deleteResponse);
       }
     catch (err) {
       console.log("Error", err);

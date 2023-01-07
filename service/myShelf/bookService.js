@@ -4,29 +4,26 @@ const bookDao = require("../../dao/myShelf/bookDao");
 
 
 // Service: Create, Update, Delete 비즈니스 로직 처리
-exports.registerBook = async (user_id, title) => {     //, register, status 제외?
+exports.registerBook = async (user_id, title, author, publisher, img_url, ) => {    
+    const registerBookInfoParams = [user_id, title, author, publisher, img_url];
     const connection = await pool.getConnection(async (conn) => conn);
 
     const bookTitleResult = await bookDao.registerBookInfo(
         connection,
-        user_id, 
-        title, 
-        //register, 
-        //status 
+        registerBookInfoParams
         );
     
     connection.release();
     return bookTitleResult[0];
 }
 
-exports.deleteBook = async (user_id, book_id) => {    // status 제외?
+exports.deleteBook = async (user_id, book_id) => {    
+    const deleteBookInfoParams = [user_id, book_id];
     const connection = await pool.getConnection(async (conn) => conn);
 
     const bookIdResult = await bookDao.deleteBookInfo(
         connection,
-        user_id, 
-        book_id,
-        //status 
+        deleteBookInfoParams
         );
     
     connection.release();

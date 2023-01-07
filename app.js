@@ -10,6 +10,8 @@ const timerRouter = require("./router/myShelf/timerRoute");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 
+const registerBookRouter = require("./router/myShelf/registerBook");
+const deleteBookRouter = require("./router/myShelf/deleteBook");
 
 app.listen(3000, () => {
   console.log("Connected!!!");
@@ -25,6 +27,6 @@ app.use('/shelf', shelfRouter);
 app.use('/search', searchBookRouter);
 app.use("/timer", timerRouter);
 
-app.use("/register", bookRouter);
-
+app.use("/register", registerBookRouter);
+app.use("/delete", deleteBookRouter);
 module.exports = app;
